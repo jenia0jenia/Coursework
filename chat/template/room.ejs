@@ -1,0 +1,324 @@
+<% layout('layout/page') -%>
+<% block('title', "Рабочая комната") -%>
+
+<link rel="stylesheet" title="Default" href="/vendor/bower_components/highlight/src/styles/default.css">
+<link rel="alternate stylesheet" title="Dark" href="/vendor/bower_components/highlight/src/styles/dark.css">
+<link rel="alternate stylesheet" title="FAR" href="/vendor/bower_components/highlight/src/styles/far.css">
+<link rel="alternate stylesheet" title="IDEA" href="/vendor/bower_components/highlight/src/styles/idea.css">
+<link rel="alternate stylesheet" title="Sunburst" href="/vendor/bower_components/highlight/src/styles/sunburst.css">
+<link rel="alternate stylesheet" title="Zenburn" href="/vendor/bower_components/highlight/src/styles/zenburn.css">
+<link rel="alternate stylesheet" title="Visual Studio" href="/vendor/bower_components/highlight/src/styles/vs.css">
+<link rel="alternate stylesheet" title="Ascetic" href="/vendor/bower_components/highlight/src/styles/ascetic.css">
+<link rel="alternate stylesheet" title="Magula" href="/vendor/bower_components/highlight/src/styles/magula.css">
+<link rel="alternate stylesheet" title="GitHub" href="/vendor/bower_components/highlight/src/styles/github.css">
+<link rel="alternate stylesheet" title="Google Code" href="/vendor/bower_components/highlight/src/styles/googlecode.css">
+<link rel="alternate stylesheet" title="Brown Paper" href="/vendor/bower_components/highlight/src/styles/brown_paper.css">
+<link rel="alternate stylesheet" title="School Book" href="/vendor/bower_components/highlight/src/styles/school_book.css">
+<link rel="alternate stylesheet" title="IR Black" href="/vendor/bower_components/highlight/src/styles/ir_black.css">
+<link rel="alternate stylesheet" title="Solarized - Dark" href="/vendor/bower_components/highlight/src/styles/solarized_dark.css">
+<link rel="alternate stylesheet" title="Solarized - Light" href="/vendor/bower_components/highlight/src/styles/solarized_light.css">
+<link rel="alternate stylesheet" title="Arta" href="/vendor/bower_components/highlight/src/styles/arta.css">
+<link rel="alternate stylesheet" title="Monokai" href="/vendor/bower_components/highlight/src/styles/monokai.css">
+<link rel="alternate stylesheet" title="Monokai Sublime" href="/vendor/bower_components/highlight/src/styles/monokai_sublime.css">
+<link rel="alternate stylesheet" title="XCode" href="/vendor/bower_components/highlight/src/styles/xcode.css">
+<link rel="alternate stylesheet" title="Pojoaque" href="/vendor/bower_components/highlight/src/styles/pojoaque.css">
+<link rel="alternate stylesheet" title="Rainbow" href="/vendor/bower_components/highlight/src/styles/rainbow.css">
+<link rel="alternate stylesheet" title="Tomorrow" href="/vendor/bower_components/highlight/src/styles/tomorrow.css">
+<link rel="alternate stylesheet" title="Tomorrow Night" href="/vendor/bower_components/highlight/src/styles/tomorrow-night.css">
+<link rel="alternate stylesheet" title="Tomorrow Night Bright" href="/vendor/bower_components/highlight/src/styles/tomorrow-night-bright.css">
+<link rel="alternate stylesheet" title="Tomorrow Night Blue" href="/vendor/bower_components/highlight/src/styles/tomorrow-night-blue.css">
+<link rel="alternate stylesheet" title="Tomorrow Night Eighties" href="/vendor/bower_components/highlight/src/styles/tomorrow-night-eighties.css">
+<link rel="alternate stylesheet" title="Railscasts" href="/vendor/bower_components/highlight/src/styles/railscasts.css">
+<link rel="alternate stylesheet" title="Obsidian" href="/vendor/bower_components/highlight/src/styles/obsidian.css">
+<link rel="alternate stylesheet" title="Docco" href="/vendor/bower_components/highlight/src/styles/docco.css">
+<link rel="alternate stylesheet" title="Mono Blue" href="/vendor/bower_components/highlight/src/styles/mono-blue.css">
+<link rel="alternate stylesheet" title="Foundation" href="/vendor/bower_components/highlight/src/styles/foundation.css">
+<link rel="alternate stylesheet" title="Atelier Dun - Dark" href="/vendor/bower_components/highlight/src/styles/atelier-dune.dark.css">
+<link rel="alternate stylesheet" title="Atelier Dun - Light" href="/vendor/bower_components/highlight/src/styles/atelier-dune.light.css">
+<link rel="alternate stylesheet" title="Atelier Forest - Dark" href="/vendor/bower_components/highlight/src/styles/atelier-forest.dark.css">
+<link rel="alternate stylesheet" title="Atelier Forest - Light" href="/vendor/bower_components/highlight/src/styles/atelier-forest.light.css">
+<link rel="alternate stylesheet" title="Atelier Heath - Dark" href="/vendor/bower_components/highlight/src/styles/atelier-heath.dark.css">
+<link rel="alternate stylesheet" title="Atelier Heath - Light" href="/vendor/bower_components/highlight/src/styles/atelier-heath.light.css">
+<link rel="alternate stylesheet" title="Atelier Lakeside - Dark" href="/vendor/bower_components/highlight/src/styles/atelier-lakeside.dark.css">
+<link rel="alternate stylesheet" title="Atelier Lakeside - Light" href="/vendor/bower_components/highlight/src/styles/atelier-lakeside.light.css">
+<link rel="alternate stylesheet" title="Atelier Seaside - Dark" href="/vendor/bower_components/highlight/src/styles/atelier-seaside.dark.css">
+<link rel="alternate stylesheet" title="Atelier Seaside - Light" href="/vendor/bower_components/highlight/src/styles/atelier-seaside.light.css">
+<link rel="alternate stylesheet" title="Paraiso - Dark" href="/vendor/bower_components/highlight/src/styles/paraiso.dark.css">
+<link rel="alternate stylesheet" title="Paraiso - Light" href="/vendor/bower_components/highlight/src/styles/paraiso.light.css">
+
+<script src="/vendor/bower_components/socket.io-client/dist/socket.io.js"></script>
+<script src="/vendor/bower_components/highlight/src/highlight.pack.js"></script>
+
+<script>
+    hljs.configure({tabReplace: '    '});
+    hljs.initHighlightingOnLoad();
+</script>
+
+<style>
+    body {
+        font: small Arial, sans-serif;
+    }
+    h2 {
+        font: bold 100% Arial, sans-serif;
+        margin-top: 2em;
+        margin-bottom: 0.5em;
+    }
+    table {
+        width: 100%; padding: 0; border-collapse: collapse;
+    }
+    th {
+        width: 12em;
+        padding: 0; margin: 0;
+    }
+    td {
+        padding-bottom: 1em;
+    }
+    td, th {
+        vertical-align: top;
+        text-align: left;
+    }
+    pre {
+        margin: 0; font-size: medium;
+    }
+    #switch {
+        overflow: auto; width: 67em;
+        list-style: none;
+        padding: 0; margin: 0;
+    }
+    #switch li {
+        float: left; width: 12em;
+        padding: 0.1em; margin: 0.1em 1em 0.1em 0;
+        background: #EEE;
+        cursor: pointer;
+    }
+    #switch li.current {
+        background: #CCC;
+    }
+    .test {
+        color: #888;
+        font-weight: normal;
+        margin: 2em 0 0 0;
+    }
+    .test var {
+        font-style: normal;
+    }
+    .passed {
+        color: green;
+    }
+    .failed {
+        color: red;
+    }
+    .code {
+        font: medium monospace;
+    }
+    .code .hljs-keyword {
+        font-weight: bold;
+    }
+</style>
+
+<style>
+    body {
+        font-size: 12px;
+        font-family: Sans-Serif;
+    }
+    h2 {
+        margin: 0.5em 0 0.1em;
+        text-align: center;
+    }
+    .textInput {
+        display: block;
+        width: 98%;
+        float: left;
+    }
+    input {
+        width:100%;
+        height:300px;
+    }
+    textarea {
+        width:100%;
+        height:300px;
+    }
+    label:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+</style>
+
+<div class="col-md-2">
+    <h3>Chat</h3>
+    <div id="room">
+        <ul class="list-unstyled"></ul>
+        <form>
+            <input disabled class="form-control" autocomplete="off" autofocus placeholder="Сообщение...">
+        </form>
+    </div>
+</div>
+
+<div class="col-md-10">
+    <div class="textInput">
+        <h2>Редактор кода</h2>
+        <textarea type="text" id="_id"></textarea>
+        <pre id="pre" hidden="true" ><code id="code" ></code></pre>
+    </div>
+</div>
+
+<script> // для highlight
+    // Stylesheet switcher © Vladimir Epifanov <voldmar@voldmar.ru>
+    (function(container_id) {
+        if (window.addEventListener) {
+            var attach = function(el, ev, handler) {
+                el.addEventListener(ev, handler, false);
+            }
+        } else if (window.attachEvent) {
+            var attach = function(el, ev, handler) {
+                el.attachEvent('on' + ev, handler);
+            }
+        } else {
+            var attach = function(el, ev, handler) {
+                ev['on' + ev] = handler;
+            }
+        }
+
+
+        attach(window, 'load', function() {
+            var current = null;
+
+            var info = {};
+            var links = document.getElementsByTagName('link');
+            var ul = document.createElement('ul')
+
+            for (var i = 0; (link = links[i]); i++) {
+                if (link.getAttribute('rel').indexOf('style') != -1
+                        && link.title) {
+
+                    var title = link.title;
+
+                    info[title] = {
+                        'link': link,
+                        'li': document.createElement('li')
+                    }
+
+                    ul.appendChild(info[title].li)
+                    info[title].li.title = title;
+
+                    info[title].link.disabled = true;
+
+                    info[title].li.appendChild(document.createTextNode(title));
+                    attach(info[title].li, 'click', (function (el) {
+                        return function() {
+                            current.li.className = '';
+                            current.link.disabled = true;
+                            current = el;
+                            current.li.className = 'current';
+                            current.link.disabled = false;
+                        }})(info[title]));
+                }
+            }
+
+            current = info['Default']
+            current.li.className = 'current';
+            current.link.disabled = false;
+
+            ul.id = 'switch';
+            container = document.getElementById(container_id);
+            container.appendChild(ul);
+        });
+
+    })('styleswitcher');
+</script>
+
+<script> // комната
+var inputCode = document.getElementById('_id');
+var outputCode = document.getElementById('code');
+var pre = document.getElementById('pre');
+inputCode.oninput = function() {
+    var text = inputCode.value;
+    coding(text);
+};
+
+
+var input = $('#room input');
+var span = $('#room span');
+    var ul = $('#room ul');
+    var form = $('#room form');
+    var textarea = $('#room textarea');
+    var socket = io.connect('', {
+        reconnect: false
+    });
+
+    socket
+            .on('change', function(text){
+                printCode2(text);
+            })
+            .on('message', function(username, message) {
+                printMessage(username + "> " + message);
+            })
+            .on('leave', function(username) {
+                printStatus(username + " вышел из чата");
+            })
+            .on('join', function(username) {
+                printStatus(username + " вошёл в чат");
+            })
+            .on('connect', function() {
+                printStatus("соединение установлено");
+                form.on('submit', sendMessage);
+                input.prop('disabled', false);
+            })
+            .on('disconnect', function() {
+                printStatus("соединение потеряно");
+                form.off('submit', sendMessage);
+                input.prop('disabled', true);
+                this.$emit('error');
+            })
+            .on('logout', function() {
+                location.href = "/";
+            })
+            .on('error', function(reason) {
+                if (reason == "handshake unauthorized") {
+                    printStatus("вы вышли из сайта");
+                } else {
+                    setTimeout(function() {
+                        socket.socket.connect();
+                    }, 500);
+                }
+            });
+
+    function sendMessage() {
+        var text = input.val();
+        socket.emit('message', text, function() {
+            printMessage("я> " + text);
+        });
+
+        input.val('');
+        return false;
+    }
+
+    function coding(text) {
+        socket.emit('change', text, function() {
+            printCode1(text);
+        });
+
+        return false;
+    }
+
+    function printStatus(status) {
+        $('<li>').append($('<i>').text(status)).appendTo(ul);
+    }
+
+    function printMessage(text) {
+        $('<li>').text(text).appendTo(ul);
+    }
+    function printCode1(text) {
+        outputCode.textContent = text;
+        pre.hidden = false;
+        hljs.highlightBlock(outputCode);
+    }
+    function printCode2(text) {
+        inputCode.hidden = true;
+        outputCode.textContent = text;
+        pre.hidden = false;
+        hljs.highlightBlock(outputCode);
+    }
+</script>
+
+
